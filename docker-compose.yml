@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  # API сервис (FastAPI)
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: researcher-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./research_reports:/app/research_reports
+      - ./config2.yaml:/app/config2.yaml
+    environment:
+      - PYTHONPATH=/app
+    command: ["python", "-m", "uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/docs"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Streamlit веб-интерфейс
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: researcher-streamlit
+    ports:
+      - "8502:8501"
+    volumes:
+      - ./research_reports:/app/research_reports
+      - ./config2.yaml:/app/config2.yaml
+    environment:
+      - PYTHONPATH=/app
+    command: ["streamlit", "run", "streamlit_app.py", "--server.address", "0.0.0.0", "--server.port", "8501", "--server.headless", "true"]
+    depends_on:
+      - api
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  research_reports:
+    driver: local
+
+networks:
+  default:
+    name: researcher-network 

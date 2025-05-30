@@ -1,0 +1,25 @@
+# Основные зависимости
+fastapi==0.115.12
+uvicorn==0.24.0
+streamlit==1.45.1
+
+# HTTP клиенты и парсинг
+aiohttp==3.12.2
+requests==2.31.0
+beautifulsoup4==4.13.4
+
+# AI и LLM
+openai==1.82.0
+
+# Валидация данных
+pydantic==2.11.5
+
+# PDF генерация
+weasyprint==65.1
+markdown==3.8
+
+# Работа с YAML
+PyYAML==6.0.1
+
+# Утилиты
+python-multipart==0.0.6 

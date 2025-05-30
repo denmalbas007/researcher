@@ -1,0 +1,23 @@
+# Пример конфигурации для AI Researcher
+# Скопируйте этот файл в config2.yaml и заполните своими данными
+
+llm:
+  # OpenAI API ключ (получить на https://platform.openai.com/api-keys)
+  api_key: "your-openai-api-key-here"
+  
+  # Модель для использования (рекомендуется gpt-4o-mini для баланса качества и скорости)
+  model: "gpt-4o-mini"
+  
+  # Альтернативные модели:
+  # model: "gpt-4o"           # Самая мощная модель
+  # model: "gpt-3.5-turbo"    # Более быстрая и дешевая модель
+
+# Инструкции:
+# 1. Скопируйте этот файл как config2.yaml
+# 2. Замените "your-openai-api-key-here" на ваш реальный API ключ OpenAI
+# 3. При необходимости измените модель (gpt-4o-mini, gpt-4, gpt-3.5-turbo и т.д.)
+#
+# Пример:
+# llm:
+#   api_key: "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#   model: "gpt-4o-mini" 
